@@ -1,6 +1,6 @@
-# SiloH MLB Player Clustering
+# Siloh MLB Player Clustering
 
-This project utilizes an autoencoder combined with k-means clustering to categorize Major League Baseball (MLB) players based on their performance statistics. Users can input their own statistics to find out which cluster of MLB players they most closely resemble.
+Classfication model utilizing an autoencoder combined with k-means clustering to categorize MLB players based on their performance statistics. An arguably old-school classification technique, but done so for the sake of lightweightness and deployability. Users can input their own statistics to find out which cluster of MLB players they most closely resemble.
 
 ## Project Structure
 
@@ -12,7 +12,7 @@ This project utilizes an autoencoder combined with k-means clustering to categor
 
 The model workflow can be summarized as:
 
-1. **Autoencoder**: Trains on MLB player statistics to learn a compressed representation of the data.
+1. **Autoencoder**: Trains on MLB player statistics to reduce dimensionality.
 2. **k-means Clustering**: Categorizes the compressed data from the autoencoder into distinct clusters.
 3. **Prediction**: The model takes user-input statistics, processes them through the autoencoder, then assigns them to one of the clusters.
 
@@ -56,3 +56,4 @@ Beware retraining if your machine does not have the option to call down to CUDA.
 
 - [ ] Integrate more years of MLB data for enhanced clustering.
 - [ ] Finetuning. This is a quick and dirty mock-up. The actual clustering is pretty poor, but good enough for a demo.
+- [ ] Further compress the model to optimize how reactive it is in deployment.
