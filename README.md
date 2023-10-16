@@ -52,7 +52,7 @@ Beware retraining if your machine does not have the option to call down to CUDA.
 
 For intuition's sake, t-SNE is a nonlinear dimensionality reduction technique well suited for embedding high-dimensional data for visualization in a low-dimensional space of two or three dimensions. Specifically, it models each high dimensional object by a two or three dimensional point such that similar objects are modeled by nearby points and dissimilar objects are modeled by distant points with high probability.
 
-Below is the t-SNE visualization of our dataset:
+Below is the t-SNE visualization of our clustering:
 
 ![t-SNE Plot](tsne_plots/v1/tsne_v1.png)
 
