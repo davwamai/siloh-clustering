@@ -54,7 +54,7 @@ For intuition's sake, t-SNE is a nonlinear dimensionality reduction technique we
 
 Below is the t-SNE visualization of our dataset:
 
-![t-SNE Plot](tnse_plots/v1/tsne_v1.png)
+![t-SNE Plot](tsne_plots/v1/tsne_v1.png)
 
 ## TODO
 
