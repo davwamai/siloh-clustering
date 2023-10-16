@@ -110,9 +110,10 @@ plt.xlabel("t-SNE feature 1")
 plt.ylabel("t-SNE feature 2")
 plt.legend()
 plt.grid(True)
+plt.savefig('../tsne_plots/v1/tsne_v1.png')
 plt.show()
 
-plt.savefig('../tsne_plots/v1/tsne_v1.png')
+
 
 
 

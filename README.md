@@ -1,6 +1,6 @@
 # Siloh MLB Player Clustering
 
-Classfication model utilizing an autoencoder combined with k-means clustering to categorize MLB players based on their performance statistics. An arguably old-school classification technique, but done so for the sake of lightweightness and deployability. Users can input their own statistics to find out which cluster of MLB players they most closely resemble.
+For the CSCE490/492 Capstone Design Project. Classfication model utilizing an autoencoder combined with k-means clustering to categorize MLB players based on their performance statistics. An arguably old-school classification technique, but done so for the sake of lightweightness and deployability. Users can input their own statistics to find out which cluster of MLB players they most closely resemble.
 
 ## Project Structure
 
@@ -48,9 +48,13 @@ python3 ../training/siloh_model_v1.py
 
 Beware retraining if your machine does not have the option to call down to CUDA. I was able to achieve a stable MSE of 0.0001 over 1000 epochs, which can be a lot for a CPU to handle.
 
-### Follow the on-screen prompts to enter your statistics
+## t-SNE Visualization
 
-### The program will output the cluster you belong to and display a list of MLB players that are in the same cluster
+For intuition's sake, t-SNE is a nonlinear dimensionality reduction technique well suited for embedding high-dimensional data for visualization in a low-dimensional space of two or three dimensions. Specifically, it models each high dimensional object by a two or three dimensional point such that similar objects are modeled by nearby points and dissimilar objects are modeled by distant points with high probability.
+
+Below is the t-SNE visualization of our dataset:
+
+![t-SNE Plot](tnse_plots/v1/tsne_v1.png)
 
 ## TODO
 
