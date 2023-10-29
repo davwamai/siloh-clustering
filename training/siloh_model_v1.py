@@ -16,7 +16,7 @@ data = pd.read_csv("../datasets/cleaned_percentile_rankings.csv")
 print(data.head())
 data = data.dropna()
 
-player_names = data[['player_name']] 
+player_names = data[['player_name']]
 stats_data = data.drop(columns=['player_name', 'player_id', 'year'])
 
 scaler = StandardScaler()
@@ -33,6 +33,7 @@ class Autoencoder(nn.Module):
             nn.Linear(128, 64),
             nn.ReLU(),
         )
+
         self.decoder = nn.Sequential(
             nn.Linear(64, 128),
             nn.ReLU(),
@@ -112,8 +113,3 @@ plt.legend()
 plt.grid(True)
 plt.savefig('../tsne_plots/v1/tsne_v1.png')
 plt.show()
-
-
-
-
-
