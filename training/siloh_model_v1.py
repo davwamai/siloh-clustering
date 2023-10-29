@@ -21,6 +21,32 @@ stats_data = data.drop(columns=['player_name', 'player_id', 'year'])
 
 scaler = StandardScaler()
 
+# I have a feeling the feature overlap in the tsne has to do 
+# with how we're prescaling. Gonna see if encoding prescaled + rescaled
+# data will squash the clusters some more. 
+class ModularScaler(object):
+    def __init__(self, copy=True, with_mean=True, with_std=True):
+        self.copy = copy
+        self.with_mean = with_mean
+        self.with_std = with_std
+
+    def fit(self, x):
+        if self.with_mean:
+            self.mean_ = x.mean(0, keepdim=True)
+        if self.with_std:
+            self.std_ = x.std(0, unbiased=False, keepdim=True)
+        return self
+
+    def transform(self, x):
+        if self.with_mean:
+            x -= self.mean_
+        if self.with_std:
+            x /= self.std_
+        return x
+
+    def fit_transform(self, x):
+        return self.fit(x).transform(x)
+
 normalized_data = scaler.fit_transform(stats_data)
 tensor_data = torch.tensor(normalized_data).float()
 
@@ -46,8 +72,9 @@ class Autoencoder(nn.Module):
         return x
 
 # Hyperparameters
-learning_rate = 0.001
-num_epochs = 1000
+# Kinda OK convergence at 6400 epochs, but still not great.
+learning_rate = 0.0001
+num_epochs = 6400
 batch_size = 64
 input_dim = tensor_data.shape[1]
 
@@ -69,7 +96,7 @@ for epoch in range(num_epochs):
         loss.backward()
         optimizer.step()
 
-    print(f"Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}")
+    print(f"Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item():.5f}")
     
 def encode_data(data, encoder):#lol
     return encoder(data.to(device)).detach()
@@ -101,7 +128,7 @@ plt.figure(figsize=(10, 8))
 for i in range(n_clusters):
     plt.scatter(reduced_data[clustered == i][:, 0], 
                 reduced_data[clustered == i][:, 1], 
-                label=f"C- {i}", 
+                label=f"C: {i}", 
                 alpha=0.7, 
                 edgecolors='w', 
                 linewidth=0.5)
